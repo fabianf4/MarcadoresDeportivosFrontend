@@ -92,12 +92,6 @@ export function UpdateUser() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="inputImage" className="form-label">
-            Imagen
-          </label>
-          <input type="text" id="inputImage" className="form-control" />
-        </div>
         <button type="submit" className="btn btn-primary">
           Actualizar
         </button>

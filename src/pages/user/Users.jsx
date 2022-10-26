@@ -10,6 +10,7 @@ export function User() {
   const navigate = useNavigate()
   const [users, setUsers] = useState([])
   const token = window.localStorage.getItem("token")
+  const url = import.meta.env.VITE_URL_API
 
   function getData(){
     if (token) {
@@ -55,7 +56,7 @@ export function User() {
                 <td>{user.email}</td>
                 <td>{user.password ? "SI" : "NO"}</td>
                 <td>{user.birth? user.birth.split("T")[0]: ''}</td>
-                <td>{user.image? "Si" : "No"}</td>
+                <td>{user.image?<img className='img-thumbnail' width='100px' src={`${url}public/${user.image}`}/>: 'No tiene imagen'}</td>
                 <td>
                   <ButtonUpUser uuid={user.uuid}/>
                      

@@ -4,17 +4,19 @@ import swal from "sweetalert"
 import {useNavigate} from 'react-router-dom'
 
 export function SignIn() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [birth, setBirth] = useState("")
-  const [password, setPassword] = useState("")
+
+  const [name, setName] = useState(undefined)
+  const [email, setEmail] = useState(undefined)
+  const [birth, setBirth] = useState(undefined)
+  const [password, setPassword] = useState(undefined)
+  const [image,setImage] = useState(undefined)
 
   const navigate = useNavigate()
 
   const sendData = (e) => {
     e.preventDefault()
 
-    apiUsers("POST", "user", { name, email, birth ,password}).then((results) => {
+    apiUsers("POST", "user", { name, email, birth ,password},"",image).then((results) => {
       if (results.result) {
 
         swal("Felicidades!", "Se a registrado", "success")
@@ -28,7 +30,7 @@ export function SignIn() {
   }
   return (
     <>
-      <form onSubmit={sendData} autoComplete='off'>
+      <form onSubmit={sendData} autoComplete='off' >
         <legend>Registrarse</legend>
 
         <div className="mb-3">
@@ -79,7 +81,7 @@ export function SignIn() {
           <label htmlFor="inputImage" className="form-label">
             Imagen
           </label>
-          <input type="file" id="inputImage" className="form-control" />
+          <input type="file" id="inputImage" className="form-control" onChange={(e)=>setImage(e.target.files[0])}/>
         </div>
         <button type="submit" className="btn btn-primary">
           Enviar
